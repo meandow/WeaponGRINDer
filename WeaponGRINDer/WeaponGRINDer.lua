@@ -1,16 +1,17 @@
 -- File: WeaponGRINDer.lua
 -- Name: WeaponGRINDer
 -- Author: Meandow
--- Description: Repair your weapon
+-- Description: Automatically repairs your weapon
 -- Version: 1.0.0
 
 local function GrindWeapon()
+	weaponId = 16
 	canRepair = CanMerchantRepair()
-	current, maximum = GetInventoryItemDurability(16);
+	current, maximum = GetInventoryItemDurability(weaponId);
 	needsRepair = (current/maximum) < 0.8
     if canRepair and needsRepair then
         ShowRepairCursor()
-		message('Bitch your weapon is low on durability')
+		PickupInventoryItem(weaponId)
     end
 end
 
